@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+    <h1> List of tasks </h1>
+    <a href="{% url 'landing' %}">Home</a>
+
+    <ul>
+    {% for task in tasks %}
+    <li>
+        <input type="checkbox" {% if task.is_completed %} checked {% endif %}/>
+        {{ task.owner.username|title }}: {{ task.state }} - {{ task.title }}
+    </li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'add-task' %}">Add Task</a>
+{% endblock content %}
