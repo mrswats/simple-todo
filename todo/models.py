@@ -13,7 +13,7 @@ class Task(models.Model):
         max_length=50, choices=TaskState.choices, default=TaskState.TODO
     )
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(default="", blank=True)
 
     @property
     def is_completed(self) -> bool:

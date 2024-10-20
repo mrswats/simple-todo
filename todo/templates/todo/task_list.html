@@ -7,8 +7,15 @@
     <ul>
     {% for task in tasks %}
     <li>
+        <form action="{% url 'task-completed' task.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="complete task"/>
+        </form>
         <input type="checkbox" {% if task.is_completed %} checked {% endif %}/>
         {{ task.owner.username|title }}: {{ task.state }} - {{ task.title }}
+        <form action={% url 'delete-task' task.pk %} action="POST">
+            <input type="submit" value="delete"/>
+        </form>
     </li>
     {% endfor %}
     </ul>
